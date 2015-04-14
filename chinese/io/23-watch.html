@@ -27,15 +27,14 @@
 </script>
 
 <script type="text/x-red" data-help-name="watch">
-    <p>Watches a directory or file for changes.</p>
+    <p>监视目录或文件的变化</p>
     <p>You can enter a list of comma separated directories and/or files. You will
     need to put quotes "..." around any that have spaces in.</p>
-    <p>On Windows you must use double back-slashes \\ in any directory names.</p>
-    <p>The full filename of the file that actually changed is put into <b>msg.payload</b>,
-    while a stringified version of the watch list is returned in <b>msg.topic</b>.</p>
-    <p><b>msg.file</b> contains just the short filename of the file that changed.
-    <b>msg.type</b> has the type of thing changed, usually <i>file</i> or <i>directory</i>,
-    while <b>msg.size</b> holds the file size in bytes.</p>
+    <p>在Windows系统上，在目录中使用\\。</p>
+    <p><b>msg.payload</b>中是发生改变的文件的完整路径，<b>msg.topic</b>中包含转化成字符串的监视列表</p>
+    <p><b>msg.file</b>包含发生改变文件的文件名
+    <b>msg.type</b>是发生改变对象的类型，一般为<i>file</i>或<i>directory</i>,
+    <b>msg.size</b>是发生改变的文件大小，单位为字节</p>
     <p>Of course in Linux, <i>everything</i> is a file and thus can be watched...</p>
     <p><b>Note: </b>The directory or file must exist in order to be watched. If the file
     or directory gets deleted it may no longer be monitored even if it gets re-created.</p>
