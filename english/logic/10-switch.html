@@ -16,7 +16,7 @@
 
 <script type="text/x-red" data-template-name="switch">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> 名字</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
@@ -28,22 +28,20 @@
         </div>
     </div>
     <div class="form-row">
-        <a href="#" class="btn btn-mini" id="node-input-add-rule" style="margin-top: 4px;"><i class="fa fa-plus"></i> rule</a>
+        <a href="#" class="btn btn-mini" id="node-input-add-rule" style="margin-top: 4px;"><i class="fa fa-plus"></i> 规则</a>
     </div>
     <div class="form-row">
         <select id="node-input-checkall" style="width:100%; margin-right:5px;">
-            <option value="true">checking all rules</option>
-            <option value="false">stopping after first match</option>
+            <option value="true">检测所有的规则</option>
+            <option value="false">找到一个匹配的就停止</option>
         </select>
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="switch">
-    <p>A simple function node to route messages based on its properties.</p>
-    <p>When a message arrives, the selected property is evaluated against each
-    of the defined rules. The message is then sent to the output of <i>all</i>
-    rules that pass.</p>
-    <p>Note: the <i>otherwise</i> rule applies as a "not any of" the rules preceding it.</p>
+    <p>一个根据属性选择消息的输出路线的节点</p>
+    <p>当消息到达的时候, 选择的属性和既定的规则对比，然后送到需要输出的地方</p>
+    <p>提醒: the <i>otherwise</i> 应用的规则在"not of any"之前.</p>
 </script>
 
 <script type="text/javascript">
