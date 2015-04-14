@@ -16,11 +16,11 @@
 
 <script type="text/x-red" data-template-name="change">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> 名字</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row" style="margin-bottom:0;">
-        <label><i class="fa fa-list"></i> Rules</label>
+        <label><i class="fa fa-list"></i> 规则</label>
     </div>
     <div class="form-row node-input-rule-container-row" style="margin-bottom: 0px;">
         <div id="node-input-rule-container-div" style="box-sizing: border-box; border-radius: 5px; height: 300px; padding: 5px; border: 1px solid #ccc; overflow-y:scroll;">
@@ -28,20 +28,18 @@
         </div>
     </div>
     <div class="form-row">
-        <a href="#" class="btn btn-mini" id="node-input-add-rule" style="margin-top: 4px;"><i class="fa fa-plus"></i> rule</a>
+        <a href="#" class="btn btn-mini" id="node-input-add-rule" style="margin-top: 4px;"><i class="fa fa-plus"></i> 规则</a>
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="change">
-    <p>Set, change or delete properties of a message.</p>
-    <p>The node can specify multiple rules that will be applied to the message in turn.</p>
-    <p>The available operations are:</p>
+    <p>创建，修改或删除消息的一个属性</p>
+    <p>这个节点可以指定多个规则去修改消息</p>
+    <p>以下操作是可用的：</p>
     <ul>
-        <li><b>Set</b> - set a property. The <b>to</b> property can either be a string value, or reference
-         another message property by name, for example: <code>msg.topic</code>.</li>
-        <li><b>Change</b> - search &amp; replace parts of the property. If regular expressions
-            are enabled, the <b>replace with</b> property can include capture groups, for example <code>$1</code></li>
-        <li><b>Delete</b> - delete a property.</li>
+        <li><b>创建</b> - 创建一个属性.  属性可以是一个字符串, 或者参考其他属性的名字, 例如: <code>msg.topic</code>.</li>
+        <li><b>修改</b> - 检索 &amp; 修改消息的部分属性. 如果用正则表达式, 替换的属性可以包含捕获的groups, 例如 <code>$1</code></li>
+        <li><b>删除</b> - 删除一个属性.</li>
     </ul>
 </script>
 
