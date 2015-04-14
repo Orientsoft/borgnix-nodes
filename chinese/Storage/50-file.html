@@ -1,0 +1,120 @@
+<!--
+  Copyright 2013, 2014 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/x-red" data-template-name="file">
+    <div class="form-row node-input-filename">
+         <label for="node-input-filename"><i class="fa fa-file"></i> Filename</label>
+         <input type="text" id="node-input-filename" placeholder="Filename">
+    </div>
+    <div class="form-row">
+        <label for="node-input-overwriteFile"><i class="fa fa-random"></i> Action</label>
+        <select type="text" id="node-input-overwriteFile" style="display: inline-block; width: 250px; vertical-align: top;">
+            <option value="false">append to file</option>
+            <option value="true">overwrite file</option>
+            <option value="delete">delete file</option>
+        </select>
+    </div>
+    <div class="form-row" id="node-appline">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-appendNewline" placeholder="Name" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-appendNewline" style="width: 70%;">Add newline (\n) to each payload ?</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="file">
+    <p>将 <b>msg.payload</b>的内容写入到指定的文件里面, 例如创建一个日志.</p>
+    <p>文件名可以在节点的配置面板中进行配置, 如果不进行配置，那么 传入的消息的filename将会赋值给<b>msg.filename</b>.</p>
+    <p>每一个消息都会添加新的一行.但是如果需要的话，你可以关掉这个功能, 例如, 允许写入二进制文件.</p>
+    <p>默认的是将文件追加到原文件. 不过每次都可以通过覆写的方式来写入文件, 例如你想要输出一个静态web页面或者一份报告.</p>
+    <p>如果需要的话，本节点还可以通过配置，然后可以删除制定的文件. <i>Note:</i> 现在已经不提倡使用msg.delete了.</p>
+</script>
+
+<script type="text/x-red" data-template-name="file in">
+    <div class="form-row">
+         <label for="node-input-filename"><i class="fa fa-file"></i> Filename</label>
+         <input type="text" id="node-input-filename" placeholder="Filename">
+    </div>
+    <div class="form-row">
+        <label for="node-input-format"><i class="fa fa-sign-out"></i> Output as</label>
+        <select id="node-input-format">
+            <option value="utf8">a utf8 string</option>
+            <option value="">a Buffer</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="file in">
+    <p>读取指定的文件，将文件内容赋值给<b>msg.payload</b>, 将文件名赋值给<b>msg.filename</b>.</p>
+    <p>文件名可以在节点的配置面板中进行配置, 如果不进行配置，那么 传入的消息的filename将会赋值给<b>msg.filename</b>.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('file',{
+        category: 'storage-output',
+        defaults: {
+            name: {value:""},
+            filename: {value:""},
+            appendNewline: {value:true},
+            overwriteFile: {value:"false"}
+        },
+        color:"BurlyWood",
+        inputs:1,
+        outputs:0,
+        icon: "file.png",
+        align: "right",
+        label: function() {
+            if (this.overwriteFile === "delete") { return this.name||"delete "+this.filename; }
+            else { return this.name||this.filename||"file"; }
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+          $("#node-input-overwriteFile").on("change",function() {
+            if (this.value === "delete") { $("#node-appline").hide(); }
+            else { $("#node-appline").show(); }
+          });
+        }
+    });
+
+    RED.nodes.registerType('file in',{
+        category: 'storage-input',
+        defaults: {
+            name: {value:""},
+            filename: {value:""},
+            format: {value:"utf8"},
+        },
+        color:"BurlyWood",
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||this.filename||"file";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+
+</script>
