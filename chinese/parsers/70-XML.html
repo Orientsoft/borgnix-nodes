@@ -28,8 +28,7 @@
         <div class="form-row">
             <i class="fa fa-key"></i> Prefix to access character content <input type="text" id="node-input-chr" style="width:20px !important">
         </div>
-        <div class="form-tips">There is no simple way to convert XML attributes to JSON
-        so the approach taken here is to add a property, named $ by default, to the JSON structure.
+        <div class="form-tips">
         因为不存在一个直接把XML的参数转换为JSON格式的方法。所以我们（这里）采用的办法是往JSON中增加一个property(属性),默认命名为 $ 。 
         </div>
     </div>
@@ -53,18 +52,16 @@
 
 <script type="text/x-red" data-help-name="xml">
 
-    <p>A function that parses the msg.payload to convert xml to/from a javascript object. Places the result in the payload.</p>
     <p>该函数接受并且解析<b>msg.payload</b>消息以把XML转化为一个javascript对象，或者把javascript对象转化为XML消息。 其结果存储在<b>payload</b>中。</p>
 
-
-    <p>If the input is a string it tries to parse it as XML and creates a javascript object.</p>
     <p>如果接受一个字符串，该节点将把字符串用XML语法解析并创建一个javascript对象</p>
 
-
-    <p>If the input is a javascript object it tries to build an XML string.</p>
     <p>如果接受一个javascript对象，该节点将创建一个XML字符串</p>
 
     <p>点击 <a href="https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/README.md" target="_new">the xml2js docs </a>查看更多信息。</p>
+    <ul>
+        <li><code>Name</code>名称</li>
+    </ul>
 </script>
 
 <script type="text/javascript">
