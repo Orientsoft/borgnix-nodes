@@ -138,8 +138,10 @@
 <script type="text/x-red" data-help-name="http request">
     <p>HTTP请求节点</p>
     <p>
-        URL和HTTP方法参数可以在节点设置中设置，如果没有设置，则会使用
-        输入<code>msg.url</code>和<code>msg.method</code>:</p>
+        URL和HTTP方法参数可以在节点设置中设置，如果没有设置，
+        则会使用<code>msg.url</code>和<code>msg.method</code>。
+    </p>
+    <p><code>msg</code>包含以下属性：</p>
     <ul>
         <li><code>url</code>：HTTP请求的URL，必须以http:或https:开头</li>
         <li><code>method</code>：HTTP方法，只能是<code>GET</code>、<code>PUT</code>、<code>POST</code>、<code>PATCH</code>或<code>DELETE</code>中的一个，默认为<code>GET</code></li>
@@ -155,14 +157,23 @@
         <code>msg.topic</code> automatically inserted.
         Using {{{...}}} prevents mustache from escaping characters like / & etc.
     </p>
-    <p>
-    节点输出的Message有以下属性
+    <p>节点输出的Message有以下属性</p>
     <ul>
         <li><code>payload</code>HTTP应答的消息体</li>
         <li><code>statusCode</code>HTTP状态码</li>
         <li><code>headers</code>HTTP应答的头部行</li>
     </ul>
+
+    <p>参数</p>
+    <ul>
+        <li><b>Method</b></li>
+        <li><b>Url</b></li>
+        <li><b>Return</b></li>
+        <li><b>Name</b></li>
+    </ul>
 </script>
+
+
 
 <script type="text/javascript">
     RED.nodes.registerType('http in',{
