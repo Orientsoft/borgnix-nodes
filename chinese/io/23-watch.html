@@ -32,9 +32,11 @@
     <p>可以输入使用逗号分隔的目录和文件列表，路径中有空格的，需要使用引号。</p>
     <p>在Windows系统上，在路径中使用\\进行分隔。</p>
     <p><b>msg.payload</b>中是发生改变的文件的完整路径，<b>msg.topic</b>中包含转化成字符串的监视列表</p>
-    <p><b>msg.file</b>包含发生改变文件的文件名
-    <b>msg.type</b>是发生改变对象的类型，一般为<i>file</i>或<i>directory</i>,
-    <b>msg.size</b>是发生改变的文件大小，单位为字节</p>
+    <p>
+      <b>msg.file</b>包含发生改变文件的文件名；</br>
+      <b>msg.type</b>是发生改变对象的类型，
+      一般为<i>file</i>或<i>directory</i>；</br>
+      <b>msg.size</b>是发生改变的文件大小，单位为字节。</p>
     <p>参数</p>
     <ul>
         <li><b>Files</b></li>

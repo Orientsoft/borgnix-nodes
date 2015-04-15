@@ -157,10 +157,10 @@
     </div>
 
     <div class="form-tips hidden" id="fin-tip">
-        <b>Note:</b> Closing the connection after each message is generally not a good thing - but is useful to indicate an end-of-file for example.
+        <b>Note:</b> 通常情况下，不建议在接收一条消息后就关闭连接。 - but is useful to indicate an end-of-file for example.
     </div>
     <div class="form-tips hidden" id="fin-tip2">
-        <b>Note:</b> Closing the connection after each message is generally not a good thing - but is useful to indicate an end-of-file for example. The receiving client will need to reconnect.
+        <b>Note:</b> 通常情况下，不建议在接收一条消息后就关闭连接。 - but is useful to indicate an end-of-file for example. 接收消息的客户端需要在连接关闭后需要重新连接。
     </div>
 </script>
 
@@ -286,9 +286,13 @@
         将<b>msg.payload</b>发送到一个TCP服务器端口，并接收应答。
     </p>
 
-    <p>Connects, sends the "request", reads the "response". It can either count a number of
-    returned characters into a fixed buffer, match a specified character before returning,
-    wait a fixed timeout from first reply and then return, or just sit and wait for data.</p>
+    <p>
+        Connects, sends the "request", reads the "response".
+        It can either count a number of returned characters into
+        a fixed buffer, match a specified character before returning,
+        wait a fixed timeout from first reply and then return,
+        or just sit and wait for data.
+    </p>
     <p>收到的应答会以二进制buffer的形式存储在<b>msg.payload</b>中。</p>
     <p>
         如果不在节点中设置服务器的主机名和端口，
