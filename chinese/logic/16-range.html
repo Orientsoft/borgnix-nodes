@@ -44,14 +44,14 @@
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips" id="node-tip">Tip: This node ONLY works with numbers.</div>
+    <div class="form-tips" id="node-tip">注意: 这个节点只能操作数字</div>
 </script>
 
 <script type="text/x-red" data-help-name="range">
     <p>一个可以将输入的数字重新映射的节点</p>
 +    <p>目前只能线性得映射.</p>
 +    <p><b>注意:</b> 这个节点只能操作 <b>数字</b>. 任何其他的类型会尝试转换成数字，如果不行就会失败</p>
-+    <p><i>比例和目标范围限制</i> 也就是说结果永远不会超出目标范围.</p>
++    <p>例如，0到10映射为0到100，原来等于5的就会被映射为50</p>
 </script>
 
 <script type="text/javascript">
