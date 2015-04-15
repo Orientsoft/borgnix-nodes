@@ -1,0 +1,126 @@
+<!--
+  Copyright 2014 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/x-red" data-template-name="trigger">
+    <div class="form-row">
+        <label for="node-input-op1type"><i class="fa fa-arrow-up"></i> Output</label>
+        <select id="node-input-op1type" style="width:73% !important">
+            <option value="val">the value below</option>
+            <option value="pay">the existing payload</option>
+            <option value="nul">nothing (no output)</option>
+        </select>
+    </div>
+    <div class="form-row" id="node-op1">
+        <label for="node-input-op1">&nbsp;</label>
+        <input type="text" id="node-input-op1">
+    </div>
+    <div class="form-row">
+        <label for="node-input-duration"><i class="fa fa-clock-o"></i> then wait</label>
+        <input type="text" id="node-input-duration" placeholder="250" style="direction:rtl; width:70px !important">
+        <select id="node-input-units" style="width:140px !important">
+            <option value="ms">Milliseconds</option>
+            <option value="s">Seconds</option>
+            <option value="min">Minutes</option>
+            <option value="hr">Hours</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-op2type"><i class="fa fa-arrow-down"></i> output</label>
+        <select id="node-input-op2type" style="width:73% !important">
+            <option value="val">the value below</option>
+            <option value="pay">the existing payload</option>
+            <option value="nul">nothing (no output)</option>
+        </select>
+    </div>
+    <div class="form-row" id="node-op2">
+        <label for="node-input-op2">&nbsp;</label>
+        <input type="text" id="node-input-op2">
+    </div>
+    <div class="form-row">
+        <label for="node-input-extend"><i class="fa fa-repeat"></i> and</label>
+        <select id="node-input-extend" style="width:73% !important">
+            <option value="false">don't extend the timer if retriggered</option>
+            <option value="true">extend the timer if retriggered</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <!-- <div class="form-tips">Tip: Outputs can be values, null, {{templated}} or msg.payload<br/> -->
+    <div class="form-tips">设定计时器为0的话即为不限定时间.</div>
+    <script>
+    {
+        $("#node-input-op1type").change(function() {
+            if ($("#node-input-op1type").val() == "val") { $("#node-op1").show(); }
+            else { $("#node-op1").hide(); }
+        });
+        $("#node-input-op2type").change(function() {
+            if ($("#node-input-op2type").val() == "val") { $("#node-op2").show(); }
+            else { $("#node-op2").hide(); }
+        });
+    }
+    </script>
+</script>
+
+<script type="text/x-red" data-help-name="trigger">
+    <p>通过一个计时器，将一个任意时刻到达的<b>msg</b>分割成为两个消息并输出.</p>
+    <p>例如, 这个节点可以用来转化一个Raspberry PI GPIO pin 的开与关.</p>
+    <p>这两个输出状态可以指定为定时器的时间.每一个输出可以被设定一个值, 或者被
+    <b>msg</b> 里面的mustache语义进行规范化. <pre>payload 就是 {{payload}}</pre></p>
+    <p>如果 payload 是一个对象， 那么如果将<i>existing payload</i> 设定为输出就会将整个 payload 对象传递下去.</p>
+    <p>任意的计时器能够利用重复的触发实现扩展.</p>
+    <p>通过设置第一个输出为<i>nothing</i>, 并且选择扩展计时器 - 那么就可以创建出一个监视者.除非在时限之内有重复的输入，否则不会产生任何的输出.</p>
+    <p>设定计时器为0的话即为不限定时间 - 能够产生第一个输出，但是不会产生第二个输出,同时二者都不能够被重复触发 - 所以一个真实的输出才会被传输.</p>
+    <p>如果 <b>msg.reset</b> 属性在当前的运行中超时，那么该属性就会被清空并且不会有第二个输出.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('trigger',{
+        category: 'function',
+        color:"#E6E0F8",
+        defaults: {
+            op1: {value:"1"},
+            op2: {value:"0"},
+            op1type: {value:"val"},
+            op2type: {value:"val"},
+            duration: {value:"250",required:true,validate:RED.validators.number()},
+            extend: {value:"false"},
+            units: {value: "ms"},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "trigger.png",
+        label: function() {
+            if (this.duration > 0) {
+                return this.name||"trigger "+this.duration+this.units;
+            }
+            else {
+                return this.name||"trigger once &infin;";
+            }
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $( "#node-input-duration" ).spinner({
+                min:1,
+                increment:25
+            });
+        }
+    });
+</script>
