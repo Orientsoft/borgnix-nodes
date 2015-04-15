@@ -14,61 +14,61 @@
   limitations under the License.
 -->
 <script type="text/javascript">
-function ws_oneditprepare() {
-    $("#websocket-client-row").hide();            
-    $("#node-input-mode").change(function(){
-        if( $("#node-input-mode").val() === 'client') {
-            $("#websocket-server-row").hide();
-            $("#websocket-client-row").show();
+    function ws_oneditprepare() {
+        $("#websocket-client-row").hide();            
+        $("#node-input-mode").change(function(){
+            if( $("#node-input-mode").val() === 'client') {
+                $("#websocket-server-row").hide();
+                $("#websocket-client-row").show();
+            }
+            else {
+                $("#websocket-server-row").show();
+                $("#websocket-client-row").hide();
+            }
+        });
+
+        if(this.client) {
+            $("#node-input-mode").val('client').change();
         }
         else {
-            $("#websocket-server-row").show();
-            $("#websocket-client-row").hide();
+            $("#node-input-mode").val('server').change();
         }
-    });
+    }
 
-    if(this.client) {
-        $("#node-input-mode").val('client').change();
+    function ws_oneditsave() {
+        if($("#node-input-mode").val() === 'client') {
+            $("#node-input-server").append('<option value="">Dummy</option>');
+            $("#node-input-server").val('');                
+        }
+        else {
+            $("#node-input-client").append('<option value="">Dummy</option>');
+            $("#node-input-client").val('');                
+        }
     }
-    else {
-        $("#node-input-mode").val('server').change();
-    }
-}
 
-function ws_oneditsave() {
-    if($("#node-input-mode").val() === 'client') {
-        $("#node-input-server").append('<option value="">Dummy</option>');
-        $("#node-input-server").val('');                
+    function ws_label() {
+        var nodeid = (this.client)?this.client:this.server;
+        var wsNode = RED.nodes.node(nodeid);
+        return this.name||(wsNode?"[ws] "+wsNode.label():"websocket");
     }
-    else {
-        $("#node-input-client").append('<option value="">Dummy</option>');
-        $("#node-input-client").val('');                
-    }
-}
 
-function ws_label() {
-    var nodeid = (this.client)?this.client:this.server;
-    var wsNode = RED.nodes.node(nodeid);
-    return this.name||(wsNode?"[ws] "+wsNode.label():"websocket");
-}
+    function ws_validateserver() {
+        if($("#node-input-mode").val() === 'client' || (this.client && !this.server)) {
+            return true;
+        }
+        else {
+            return RED.nodes.node(this.server) != null;
+        }
+    }
 
-function ws_validateserver() {
-    if($("#node-input-mode").val() === 'client' || (this.client && !this.server)) {
-        return true;
+    function ws_validateclient() {
+        if($("#node-input-mode").val() === 'client' || (this.client && !this.server)) {
+            return RED.nodes.node(this.client) != null;
+        }
+        else {
+            return true;
+        }
     }
-    else {
-        return RED.nodes.node(this.server) != null;
-    }
-}
-
-function ws_validateclient() {
-    if($("#node-input-mode").val() === 'client' || (this.client && !this.server)) {
-        return RED.nodes.node(this.client) != null;
-    }
-    else {
-        return true;
-    }
-}
 </script>
 <!-- WebSocket Input Node -->
 <script type="text/x-red" data-template-name="websocket in">
@@ -94,10 +94,17 @@ function ws_validateclient() {
 </script>
 
 <script type="text/x-red" data-help-name="websocket in">
-    <p>WebSocket input node.</p>
-    <p>By default, the data received from the WebSocket will be in <b>msg.payload</b>.
-    The socket can be configured to expect a properly formed JSON string, in which
-    case it will parse the JSON and send on the resulting object as the entire message.</p>
+    <p>WebSocket输入节点</p>
+    <p>
+        默认设置下，收到的数据存储在<b>msg.payload</b>中。
+        节点也可以接收一个格式正确的JSON字符串，并将解析后的JSON对象作为整个
+        message输出
+    </p>
+    <ul>
+        <li><b>Type</b></li>
+        <li><b>Path</b></li>
+        <li><b>Name</b></li>
+    </ul>
 </script>
 
 <script type="text/javascript">
@@ -145,16 +152,27 @@ function ws_validateclient() {
 </script>
 
 <script type="text/x-red" data-help-name="websocket out">
-    <p>WebSocket out node.</p>
-    <p>By default, <b>msg.payload</b> will be sent over the WebSocket. The socket
-    can be configured to encode the entire message object as a JSON string and send that
-    over the WebSocket.</p>
+    <p>WebSocke输出节点</p>
+    <p>
+        默认设置下，节点会将<b>msg.payload</b>通过websocket发送。
+        节点也可以将整个<b>msg</b>对象转换成字符串再发送。
+    </p>
 
-    <p>If the message arriving at this node started at a WebSocket In node, the message
-    will be sent back to the client that triggered the flow. Otherwise, the message
-    will be broadcast to all connected clients.</p>
-    <p>If you want to broadcast a message that started at a WebSocket In node, you
-    should delete the <b>msg._session</b> property within the flow</p>.
+    <p>
+        如果输入这个节点的数据流是从一个Websocket输入节点开始的，
+        输出的消息会被返回给发起这个数据流的客户端。
+        其他情况下，输出的消息会被发送给所有已连接的客户端。
+    </p>
+    <p>
+        如果一个数据流从Websocket输入节点开始，
+        输出的消息却需要广播发送给所有已连接的客户端，
+        就需要在flow中删除<b>msg._session</b>属性。
+    </p>
+    <ul>
+        <li><b>Type</b></li>
+        <li><b>Path</b></li>
+        <li><b>Name</b></li>
+    </ul>
 </script>
 
 <script type="text/javascript">
@@ -253,9 +271,9 @@ function ws_validateclient() {
         </select>
     </div>
     <div class="form-tips">
-    <p>URL should use ws:&#47;&#47; or wss:&#47;&#47; scheme and point to an existing websocket listener.</p>
-    By default, <code>payload</code> will contain the data to be sent over, or received from a websocket.
-    The client can be configured to send or receive the entire message object as a JSON formatted string.
+        <p>URL必须以ws:&#47;&#47; or wss:&#47;&#47;开头</p>
+        默认设置下，<b>msg.payload</b>中是节点收发数据的内容。
+        节点也可以将整个<b>msg</b>对象转换成字符串进行收发。
     </div>
 </script>
 

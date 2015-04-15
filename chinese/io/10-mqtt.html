@@ -29,10 +29,22 @@
     </div>
 </script>
 
+
+
 <script type="text/x-red" data-help-name="mqtt in">
     <p>MQTT输入节点。连接到MQTT代理并订阅特定topic。topic可以包含通配符</p>
-    <p>输出一个包含<b>msg.topic、msg.payload、msg.qos</b>和<b>msg.retain</b>的<b>msg</b>对象</p>
+    <p>
+        输出一个包含<b>msg.topic、msg.payload、msg.qos</b>和<b>msg.retain</b>
+        的<b>msg</b>对象
+    </p>
     <p><b>msg.payload</b>通常是字符串，也可以是二进制buffer</p>
+
+    <ul>
+        <li><b>Broker</b></li>
+        <li><b>Topic</b></li>
+        <li><b>Name</b></li>
+    </ul>
+
 </script>
 
 <script type="text/javascript">
@@ -89,9 +101,25 @@
 </script>
 
 <script type="text/x-red" data-help-name="mqtt out">
-    <p>MQTT输出节点。连接到MQTT代理并将<b>msg.payload</b>发布到 节点设置中设定的topic，如果节点没有设置topic，则将消息发布到<b>msg.topic</b></p>
-    <p>类似地，若不设置QoS和retain参数，则使用<b>msg.qos</b>和<b>msg.retain</b> 。如果在节点设置和<b>msg</b>对象中都没有设置，则使用<i>0</i>和<i>false</i>作为默认值</p>
-    <p>如果<b>msg.payload</b>是一个对象，它会先被转换为字符串再发送</p>
+    <p>
+        MQTT输出节点。
+        连接到MQTT代理并将<b>msg.payload</b>发布到 节点设置中设定的topic，
+        如果节点没有设置topic，则将消息发布到<b>msg.topic</b>。
+    </p>
+    <p>
+        如果不在节点中设置QoS和retain参数，
+        则使用<b>msg.qos</b>和<b>msg.retain</b> 。
+        如果在节点设置和<b>msg</b>对象中都没有设置，则使用
+        <i>0</i>和<i>false</i>作为默认值。
+    </p>
+    <p>如果<b>msg.payload</b>是一个对象，它会先被转换为字符串再发送。</p>
+    <ul>
+        <li><b>Broker</b></li>
+        <li><b>Topic</b></li>
+        <li><b>Qos</b></li>
+        <li><b>Retain</b></li>
+        <li><b>Name</b></li>
+    </ul>
 </script>
 
 <script type="text/javascript">

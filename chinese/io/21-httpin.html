@@ -36,29 +36,38 @@
 </script>
 
 <script type="text/x-red" data-help-name="http in">
-    <p>Provides an input node for http requests, allowing the creation of simple web services.</p>
-    <p>The resulting message has the following properties:
+    <p>HTTP输入节点。Provides an input node for http requests, allowing the creation of simple web services.</p>
+    <p>节点输出的Message有以下属性:
         <ul>
             <li>msg.req : <a href="http://expressjs.com/api.html#req">http request</a></li>
             <li>msg.res : <a href="http://expressjs.com/api.html#res">http response</a></li>
         </ul>
     </p>
-    <p>For POST/PUT requests, the body is available under <code>msg.req.body</code>. This
-       uses the <a href="http://expressjs.com/api.html#bodyParser">Express bodyParser middleware</a> to parse the content to a JSON object.
+    <p>
+        对于POST和PUT请求，消息体使用
+        <a href="http://expressjs.com/api.html#bodyParser">Express bodyParser middleware</a>
+        进行解析，并以JSON对象的形式存储在<code>msg.req.body</code>中。
     </p>
     <p>
-       By default, this expects the body of the request to be url encoded:
+       默认情况下，消息体应使用URL编码
        <pre>foo=bar&amp;this=that</pre>
     </p>
     <p>
-       To send JSON encoded data to the node, the content-type header of the request must be set to
+       消息体如果是JSON格式，HTTP请求的content-type头必须设置为
        <code>application/json</code>.
     </p>
+
+    <ul>
+        <li><b>Method</b></li>
+        <li><b>URL</b></li>
+        <li><b>Name</b></li>
+    </ul>
+
     <p>
-       <b>Note: </b>This node does not send any response to the http request. This should be done with
-       a subsequent HTTP Response node, or Function node.
-       In the case of a Function node, the <a href="http://expressjs.com/api.html#res">Express response documentation</a>
-       describes how this should be done. For example:
+       <b>Note: </b>HTTP输入节点并对请求做应答，若要做应答，请使用HTTP输出节点
+       或者函数节点。
+       使用函数节点进行HTTP应答，可以参考<a href="http://expressjs.com/api.html#res">Express response documentation</a>
+       例如：
        <pre>msg.res.send(200, 'Thanks for the request ');<br/>return msg;</pre>
     </p>
 
@@ -73,13 +82,13 @@
 </script>
 
 <script type="text/x-red" data-help-name="http response">
-    <p>Sends responses back to http requests received from an HTTP Input node.</p>
-    <p>The response can be customised using the following message properties:</p>
+    <p>HTTP应答节点</p>
+    <p>给从HTTP输入节点中收到的请求发送应答</p>
+    <p>应答报文可以通过以下属性进行设置</p>
     <ul>
-        <li><code>payload</code> is sent as the body of the response</li>
-        <li><code>statusCode</code>, if set, is used as the response status code (default: 200)</li>
-        <li><code>headers</code>, if set, should be an object containing field/value
-        pairs to be added as response headers.</li>
+        <li><code>payload</code>：应答的消息体</li>
+        <li><code>statusCode</code>：应答状态码，默认为200</li>
+        <li><code>headers</code>：HTTP报头，一个包含多个键值对的对象</li>
     </ul>
 </script>
 
@@ -128,16 +137,24 @@
 
 <script type="text/x-red" data-help-name="http request">
     <p>HTTP请求节点</p>
-    <p>The URL and HTTP method can be configured in the node, if they are left blank they should be set in an incoming message on <code>msg.url</code> and <code>msg.method</code>:</p>
+    <p>
+        URL和HTTP方法参数可以在节点设置中设置，如果没有设置，则会使用
+        输入<code>msg.url</code>和<code>msg.method</code>:</p>
     <ul>
         <li><code>url</code>：HTTP请求的URL，必须以http:或https:开头</li>
         <li><code>method</code>：HTTP方法，只能是<code>GET</code>、<code>PUT</code>、<code>POST</code>、<code>PATCH</code>或<code>DELETE</code>中的一个，默认为<code>GET</code></li>
         <li><code>headers</code>：HTTP报头，一个包含多个键值对的对象</li>
         <li><code>payload</code>：消息体</li>
     </ul>
-    <p>在节点设置中设置URL参数时，URL可以包含<a href="http://mustache.github.io/mustache.5.html" target="_new">mustache</a>风格的标签。这些标签可以通过输入msg的属性来设置URL。 if the url is set to
-    <code>example.com/{{{topic}}}</code>, it will have the value of <code>msg.topic</code> automatically inserted.
-    Using {{{...}}} prevents mustache from escaping characters like / & etc.</p>
+    <p>
+        在节点设置中设置URL参数时，URL可以包含
+        <a href="http://mustache.github.io/mustache.5.html" target="_new">
+        mustache</a>风格的标签。这些标签可以通过输入msg的属性来设置URL。 
+        if the url is set to
+        <code>example.com/{{{topic}}}</code>, it will have the value of 
+        <code>msg.topic</code> automatically inserted.
+        Using {{{...}}} prevents mustache from escaping characters like / & etc.
+    </p>
     <p>
     节点输出的Message有以下属性
     <ul>

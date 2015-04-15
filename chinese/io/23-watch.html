@@ -23,21 +23,23 @@
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-     <div id="node-input-tip" class="form-tips">On Windows you must use double back-slashes \\ in any directory names.</div>
+     <div id="node-input-tip" class="form-tips">在Windows系统上，在路径中必须使用\\进行分隔。
+     </div>
 </script>
 
 <script type="text/x-red" data-help-name="watch">
     <p>监视目录或文件的变化</p>
-    <p>You can enter a list of comma separated directories and/or files. You will
-    need to put quotes "..." around any that have spaces in.</p>
-    <p>在Windows系统上，在目录中使用\\。</p>
+    <p>可以输入使用逗号分隔的目录和文件列表，路径中有空格的，需要使用引号。</p>
+    <p>在Windows系统上，在路径中使用\\进行分隔。</p>
     <p><b>msg.payload</b>中是发生改变的文件的完整路径，<b>msg.topic</b>中包含转化成字符串的监视列表</p>
     <p><b>msg.file</b>包含发生改变文件的文件名
     <b>msg.type</b>是发生改变对象的类型，一般为<i>file</i>或<i>directory</i>,
     <b>msg.size</b>是发生改变的文件大小，单位为字节</p>
-    <p>Of course in Linux, <i>everything</i> is a file and thus can be watched...</p>
-    <p><b>Note: </b>The directory or file must exist in order to be watched. If the file
-    or directory gets deleted it may no longer be monitored even if it gets re-created.</p>
+    <ul>
+        <li><b>Files</b></li>
+        <li><b>Name</b></li>
+    </ul>
+    <p><b>提示：</b>被监视的目录或文件必须首先存在，若目录或文件被删除，即使被重新创建，也不会被继续监视，</p>
 </script>
 
 <script type="text/javascript">

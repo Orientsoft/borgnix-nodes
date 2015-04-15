@@ -57,8 +57,15 @@
 </script>
 
 <script type="text/x-red" data-help-name="tcp in">
-    <p>Provides a choice of tcp inputs. Can either connect to a remote tcp port,
-       or accept incoming connections.</p>
+    <p>TCP输入节点</p>
+    <p>能够连接到一个TCP端口，或接受连接</p>
+    <ul>
+        <li><b>Type</b></li>
+        <li><b>Output</b></li>
+        <li><b>Topic</b></li>
+        <li><b>Name</b></li>
+    </ul>
+
 </script>
 
 <script type="text/javascript">
@@ -157,12 +164,17 @@
 </script>
 
 <script type="text/x-red" data-help-name="tcp out">
-    <p>Provides a choice of tcp outputs. Can either connect to a remote tcp port,
-    accept incoming connections, or reply to messages received from a TCP In node.</p>
-    <p>Only <b>msg.payload</b> is sent.</p>
-    <p>If <b>msg.payload</b> is a string containing a Base64 encoding of binary
-    data, the Base64 decoding option will cause it to be converted back to binary
-    before being sent.</p>
+    <p>TCP输出节点</p>
+    <p>能够连接到一个TCP端口，接受连接，或做TCP应答。</p>
+    <p>只发送<b>msg.payload</b>的内容。</p>
+    <p>
+        如果<b>msg.payload</b>是一个Base64编码的字符串，
+        Base64 decoding选项会将字符串转换成二进制后再发送。
+    </p>
+    <ul>
+        <li><b>Type</b></li>
+        <li><b>Name</b></li>
+    </ul>
 </script>
 
 <script type="text/javascript">
@@ -220,7 +232,6 @@
     });
 </script>
 
-
 <script type="text/x-red" data-template-name="tcp request">
     <div class="form-row">
         <label for="node-input-server"><i class="fa fa-globe"></i> Server</label>
@@ -268,12 +279,24 @@
 </script>
 
 <script type="text/x-red" data-help-name="tcp request">
-    <p>A simple TCP request node - sends the <b>msg.payload</b> to a server tcp port and expects a response.</p>
+    <p>TCP请求节点</p>
+    <p>
+        将<b>msg.payload</b>发送到一个TCP服务器端口，并接收应答。
+    </p>
+
     <p>Connects, sends the "request", reads the "response". It can either count a number of
     returned characters into a fixed buffer, match a specified character before returning,
     wait a fixed timeout from first reply and then return, or just sit and wait for data.</p>
-    <p>The response will be output in <b>msg.payload</b> as a buffer, so you may want to .toString() it.</p>
-    <p>If you leave tcp host or port blank they must be set by using the <b>msg.host</b> and <b>msg.port</b> properties.</p>
+    <p>收到的应答会以二进制buffer的形式存储在<b>msg.payload</b>中。</p>
+    <p>
+        如果不在节点中设置服务器的主机名和端口，
+        则会使用<b>msg.host</b>和<b>msg.port</b>
+    </p>
+    <ul>
+        <li><b>Server</b></li>
+        <li><b>Return</b></li>
+        <li><b>Name</b></li>
+    </ul>
 </script>
 
 <script type="text/javascript">
