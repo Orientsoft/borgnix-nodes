@@ -73,8 +73,9 @@
         接收并在<b>msg.payload</b>中输出<i>BUFFER</i>、
         字符串或Base64编码的字符串。支持组播。
     </p>
-    <p>It also provides <b>msg.ip</b> and <b>msg.port</b> to the ip address and port from which the message was received.</p>
+    <p>消息发送方的IP地址和端口号记录在<b>msg.ip</b>和<b>msg.port</b>中。</p>
     <p>在某些操作系统上，可能需要root权限以使用小于1024的端口或进行广播</p>
+    <p>参数</p>
     <ul>
         <li><b>Listen for</b></li>
         <li><b>on Port</b></li>
@@ -181,6 +182,7 @@
     </p>
     <p>If you select broadcast either set the address to the local broadcast ip address, or maybe try 255.255.255.255, which is the global broadcast address.</p>
     <p>在某些操作系统上，可能需要root权限以使用小于1024的端口或进行广播</p>
+    <p>参数</p>
     <ul>
         <li><b>Message Type</b></li>
         <li><b>Address</b></li>
