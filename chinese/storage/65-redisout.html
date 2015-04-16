@@ -40,13 +40,20 @@
     </div>
     <div class="form-tips">
         如果key为空， 那么topic就会作为key来使用.<br>
-        如果type是hash, payload应该是一个对象或者是field等于value的字符串.
+        如果type是hash, payload应该是一个对象or field=value string.
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="redis out">
-	<p>本节点为Redis输出节点. 选项包括了Hash, Set, List 和 String.</p>
+	<p>Redis输出节点</p>
+	<p>本节点为Redis输出节点. 可选择的type包括了Hash, Set, List 和 String.</p>
     <p>要运行本节点，本地需要运行一个Redis服务器. 详情请看 <a href="http://redis.io/" target="_new">Redis官网</a>.</p>
+	<ul>
+        <li><b>host</b>服务器主机</li>
+        <li><b>port</b>服务器断开</li>
+        <li><b>key</b></li>
+		<li><b>type</b></li>
+    </ul>
 	</script>
 
 <script type="text/javascript">

@@ -97,22 +97,28 @@
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips" id="node-warning" style="display: none"><b> Tip:</b> 如果没有设置任何的collection,请确保<b>msg.collection</b>中能够包含collection的名字
+    <div class="form-tips" id="node-warning" style="display: none"><b> Tip:</b> 如果没有设置任何的collection,请确保<b>msg.collection</b>中含有collection的名字
 </script>
 
 <script type="text/x-red" data-help-name="mongodb out">
+	<p>MongoDB输出节点</p>
     <p>本节点是一个简单的MongoDB输出节点. 能够在一个选中的集合里保存、插入、更新、删除对象.</p>
-    <p>对于已经存在的对象，报讯操作会更新该节点，如果该对象不存在，那么保存操作会插入一个新对象.</p>
-    <p>插入操作会插入一个新对象.</p>
-    <p>保存和插入操作会保存 <b>msg</b> 或 <b>msg.payload</b>.</p>
-    <p>更新会修改已经存在的一个或多个对象. 在查询需要更新的对象时，使用<b>msg.query</b> 在查询需要更新的元素时，则使用<b>msg.payload</b>.</p>
-	<p>更新一个对象，如果该对象不存在，那么该操作会添加一个新对象，更新操作也可以更新多个对象.</p>
-    <p>删除操作会删除那些符合 <b>msg.payload</b>中查询语句的对象. 如果没有查询语句，那么集合里 <i>所有的对象</i>都会被删除.</p>
-    <p>你可以在配置面板中或者通过 <b>msg.collection</b>来设置集合里面的方法. 在配置面板中设置之后会覆盖 <b>msg.collection</b>里的内容.</p>
-    <p>默认的MongoDB会创建<i>_id</i> 属性来作为主键 - 所以对 <b>msg</b>的重复的注入会产生众多数据库条目.</p>
-    <p>如果你不想这种情况发生 - 例如你想重复的条目直接覆盖掉, 那么你必需通过上一个function节点设置 <b>msg._id</b> 属性的值为constant.</p>
-    <p>这应该是一个唯一的常量，否则的话你可以创建一个基于其他msg属性的的常量.</p>
-    <p>目前为止我们没有限制或者限定集合的大小... 这在以后可能会发生调整.</p>
+    <p>对于已经存在的对象，save操作会更新该节点，如果该对象不存在，那么save操作会插入一个新对象.</p>
+    <p>insert操作会插入一个新对象.</p>
+    <p>save和insert操作会保存 <code>msg</code> 或 <cdoe>msg.payload</code>.</p>
+    <p>update会修改已经存在的一个或多个对象. 在查询需要更新的对象时，使用<code>msg.query</code> .在查询需要更新的元素时，则使用<code>msg.payload</code>.</p>
+	<p>在update一个对象时，如果该对象不存在，那么update操作会添加一个新对象.此外，update操作也可以更新多个对象.</p>
+    <p>delete操作会删除那些符合 <code>msg.payload</code>中查询语句的对象. 如果没有查询语句，那么集合里 <i>所有的对象</i>都会被删除.</p>
+    <p>你可以在配置面板中或者通过 <code>msg.collection</code>来设置集合里面的方法. 在配置面板中设置之后会覆盖 <code>msg.collection</code>里的内容.</p>
+    <p>默认的MongoDB会创建<i>_id</i> 属性来作为主键 - 所以对相同<code>msg</code>的重复的注入会产生众多数据库entry.</p>
+    <p>如果你不想这种情况发生，比如你想要将重复的entry直接覆盖掉, 那么你必需通过上一个function节点设置 <code>msg._id</code> 属性的值为constant.</p>
+    <p><code>msg._id</code>应该是一个独一无二的标识，否则的话你可以创建一个基于其他msg属性的的常量.</p>
+    <p>目前为止我们没有限制或者限定collection的大小... 不过以后可能会做出调整.</p>
+	<ul>
+        <li><b>server</b>MongoDB服务器</li>
+        <li><b>collection</b></li>
+        <li><b>operation</b>执行的操作</li>
+    </ul>
 </script>
 
 <script type="text/javascript">
@@ -190,18 +196,25 @@
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips" id="node-warning" style="display: none"><b> Tip:</b>如果没有设置任何的collection,请确保<b>msg.collection</b>中能够包含collection的名字
+    <div class="form-tips" id="node-warning" style="display: none"><b> Tip:</b>如果没有设置任何的collection,请确保<b>msg.collection</b>中含有collection的名字
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="mongodb in">
-    <p>通过已选中的操作来调用一个MongoDB方法.</p>
-    <p>每一次调用.find()函数都使用<b>msg.payload</b>来作为查询语句，以此对一个集合进行查询. 相应的, 你也可以(通过一个函数)设置 <b>msg.projection</b> 对象来约束返回的范围, 也可以设置<b>msg.sort</b>对象,<b>msg.limit</b>的数值和<b>msg.skip</b>的数值.</p>
-    <p>计算集合里返回的文档的数目或者使用<b>msg.payload</b>作为查询语句返回的结果数.</p>
-    <p>Aggregate通过使用<b>msg.payload</b>作为管道矩阵，提供了对aggregation pipeline的访问.</p>
-    <p>你可以在配置面板中或者通过 <b>msg.collection</b>来设置集合里面的方法. 在配置面板中设置之后会覆盖 <b>msg.collection</b>里的内容.</p>
+	<p>MongoDB输入节点</p>
+    <p>通过在配置面板中选择的操作来调用的MongoDB方法.</p>
+	<p>提供了Find,Count和Aggregate三个操作</p>
+    <p>Find操作会调用.find()函数，并且使用<code>msg.payload</code>来作为查询语句，以此实现对一个collection的查询. Optionally, you may also (via a function) set a <code>msg.projection</code> object to constrain the returned fields, a <code>msg.sort</code> object, a <code>msg.limit</code> number and a <code>msg.skip</code> number.</p>
+    <p>Count操作会返回collection中document的数目或者使用<code>msg.payload</code>作为查询语句，返回结果的数目.</p>
+    <p>Aggregate使用<code>msg.payload</code>作为pipeline array，提供了对aggregation pipeline的访问功能.</p>
+    <p>你可以在配置面板中或者通过 <code>msg.collection</code>来设置集合里面的方法. 在配置面板中设置之后会覆盖 <code>msg.collection</code>里的内容.</p>
     <p>点击查看<a href="http://docs.mongodb.org/manual/reference/method/db.collection.find/" target="new"><i>MongoDB集合方法</i></a>文件中的例子.</p>
-    <p>结果返回在<b>msg.payload</b>中.</p>
+    <p>操作结果结果返回在<code>msg.payload</code>中.</p>
+	<ul>
+        <li><b>server</b>MongoDB服务器</li>
+        <li><b>collection</b></li>
+        <li><b>operation</b>执行的操作</li>
+    </ul>
 </script>
 
 <script type="text/javascript">

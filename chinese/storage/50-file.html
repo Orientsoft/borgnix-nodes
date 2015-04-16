@@ -39,11 +39,17 @@
 </script>
 
 <script type="text/x-red" data-help-name="file">
-    <p>将 <b>msg.payload</b>的内容写入到指定的文件里面, 例如创建一个日志.</p>
-    <p>文件名可以在节点的配置面板中进行配置, 如果不进行配置，那么 传入的消息的filename将会赋值给<b>msg.filename</b>.</p>
-    <p>每一个消息都会添加新的一行.但是如果需要的话，你可以关掉这个功能, 例如, 允许写入二进制文件.</p>
-    <p>默认的是将文件追加到原文件. 不过每次都可以通过覆写的方式来写入文件, 例如你想要输出一个静态web页面或者一份报告.</p>
-    <p>如果需要的话，本节点还可以通过配置，然后可以删除制定的文件. <i>Note:</i> 现在已经不提倡使用msg.delete了.</p>
+	<p>写入文件节点</p>
+    <p>将 <code>msg.payload</code>的内容写入到指定的文件里面, 例如创建一个日志.</p>
+    <p>文件名可以在节点的配置面板中进行配置, 如果不进行配置，那么 传入的消息的filename将会赋值给<code>msg.filename</code>.</p>
+    <p>“Add newline (\n) to each payload ”选项是可选的.如果你选择了这个功能，那么每次写入消息时都会添加到新的一行.</p>
+	<p>可选的操作有：append to file，overwrite file和delete file<p/>
+    <p>默认的操作是append to file. 例如你想要输出一个静态web页面或者一份报告，你就可以通过overwrite file方式来写入文件, </p>
+    <p>如果需要的话，本节点还可以通过配置，然后可以删除指定的文件. <i>Note:</i> 不过现在已经不提倡使用msg.delete了.</p>
+	<ul>
+        <li><b>Filename</b>文件名</li>
+        <li><b>action</b>进行的操作</li>
+    </ul>
 </script>
 
 <script type="text/x-red" data-template-name="file in">
@@ -65,8 +71,13 @@
 </script>
 
 <script type="text/x-red" data-help-name="file in">
-    <p>读取指定的文件，将文件内容赋值给<b>msg.payload</b>, 将文件名赋值给<b>msg.filename</b>.</p>
-    <p>文件名可以在节点的配置面板中进行配置, 如果不进行配置，那么 传入的消息的filename将会赋值给<b>msg.filename</b>.</p>
+	<p>文件读取节点</p>
+    <p>读取指定的文件，将文件内容赋值给<code>msg.payload</code>, 将文件名赋值给<code>msg.filename</code>.</p>
+    <p>文件名可以在节点的配置面板中进行配置, 如果不进行配置，那么 传入的消息的filename将会赋值给<code>msg.filename</code>.</p>
+	<ul>
+        <li><b>Filename</b>文件名</li>
+        <li><b>Output as</b>输出的类型</li>
+    </ul>
 </script>
 
 <script type="text/javascript">
