@@ -44,15 +44,16 @@
 </script>
 
 <script type="text/x-red" data-help-name="html">
-    <p>该节点使用Selector把<b>msg.payload</b>里HTML文件中的元素提取出来。</p>
+    <p><h1>HTML转换节点</h1></p>
+    <p>该节点使用Selector把<code>msg.payload</code>里HTML文件中的元素提取出来。</p>
     <p>Selector使用<a href=="https://github.com/cheeriojs/cheerio/blob/master/Readme.md" target="_new">Cheerio</a>
     并采用<a href="https://github.com/fb55/CSSselect#user-content-supported-selectors" target="_new">CSS selector</a> 语法。</p>
-    <p>其结果可以是单个消息和一个存储了匹配元素的队列的<b>playlod</b>,或者多条只包含一个已匹配元素的消息。</p>
+    <p>其结果可以是单个消息和一个存储了匹配元素的队列的playlod,或者多条只包含一个已匹配元素的消息。</p>
     <ul>
-        <li><code>Select</code>分隔符</li>
-        <li><code>Output.Content</code>输出内容格式</li>
-        <li><code>Output</code>输出方式</li>
-        <li><code>Name</code>名称</li>
+        <li><b>Select:</b>分隔符</li>
+        <li><b>Output:</b>输出方式</li>
+        <li><b>Name:</b>名称</li>
+        <li><code>Output.Content</code>:输出内容格式</li>
     </ul>
     
 </script>

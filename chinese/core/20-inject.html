@@ -154,17 +154,18 @@
     }
 </style>
 <script type="text/x-red" data-help-name="inject">
+    <p><h1>注入流节点</h1></p>
     <p>按下左边的按钮使topic中的消息注入流中。该节点主要用于测试。</p>
-    <p>Payload默认使用自1970算起毫秒级的当前时间，但是也可以设为字符串或空白。</p>
+    <p>Payload默认使用毫秒级的当前时间，但是也可以设为字符串或空白。</p>
     <p>repeat函数允许payload按照需要的时间表发送。</p>
-    <p><em>Fire once at start</em>是在注入数据前等待一个很短的时间，来让其他节点正确地初始化。</p>
-    <p><b>Note: </b>"Interval between times"和"at a specific time"选项使用<em>cron</em>。
-       这意味着将会等到下一个小时才会执行20分钟,20分钟后又会等待40分钟-并不是在20分钟内完成。如果你想要每20分钟一次，你应该选择<em>interval</em></p>
+    <p>选择<b>Fire once at start</b>后会在注入数据前等待一个很短的时间，来让其他节点正确地初始化。</p>
+    <p><b>Note: </b><b>at a specific time</b>选项使用<em><a href="http://zh.wikipedia.org/zh/Cron">cron</a></em>。
+       这意味着会在的特定时间点注入（例如10:15注入）,之后又会等到下一时间点，而不是每一段时间注入一次。如果你想要每一段时间注入一次，你应该选择<b>Interval between times</b>或者<b>interval</b></p>
        <ul>
-        <li><code>Payload</code>Payload类型</li>
-        <li><code>Topic</code></li>
-        <li><code>Reapeat</code>重复方式</li>
-        <li><code>Name</code>名称</li>
+        <li><b>Payload:</b>Payload类型</li>
+        <li><b>Topic:</b></li>
+        <li><b>Reapeat:</b>重复方式</li>
+        <li><b>Name:</b>名称</li>
        </ul>
 
 </script>

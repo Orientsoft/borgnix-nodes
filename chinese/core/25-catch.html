@@ -21,6 +21,7 @@
     </div>
 </script>
 <script type="text/x-red" data-help-name="catch">
+    <p><h1>错误搜集节点</h1></p>
     <p>获取在同一个标签下节点抛出的错误信息。</p>
     <p>如果节点在抛出错误的同时处理消息，那么流会立刻停止。这个节点可以用来获取错误信息并用一个专用的流来处理它们。</p>
     <p>这个节点会获取同一个标签里面节点抛出的错误。如果一个标签页下有多个<em>catch</em>节点，那么所有节点都会被触发。</p>
@@ -28,9 +29,9 @@
     <p>如果是由抛出错误的节点提供消息，那么该消息是一条原始消息。这条消息有<code>error</code>
        属性，该属性包含以下参数：
        <ul>
-        <li><code>message</code> :错误消息</li>
-        <li><code>source.id</code> :抛出错误的节点id</li>
-        <li><code>source.type</code> : 抛出错误的节点类型</li>
+        <li><b>message:</b> 错误消息</li>
+        <li><code>source.id:</code> 抛出错误的节点id</li>
+        <li><code>source.type:</code>抛出错误的节点类型</li>
        </ul>
    </p>
    <p>如果这条消息已经有<code>error</code>属性，它将被复制到<code>_error</code>中。</p>
