@@ -1,0 +1,1 @@
+**Note:** 通常情况下，不建议在接收一条消息后就关闭连接。 - but is useful to indicate an end-of-file for example.

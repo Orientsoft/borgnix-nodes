@@ -1,0 +1,1 @@
+**Note:** Copied credentials from global emailkeys.js file.

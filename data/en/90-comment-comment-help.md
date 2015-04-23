@@ -1,0 +1,1 @@
+A node you can use to add comments to your flows.

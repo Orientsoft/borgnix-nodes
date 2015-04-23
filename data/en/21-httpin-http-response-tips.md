@@ -1,0 +1,1 @@
+The messages sent to this node **must** originate from an _http input_ node

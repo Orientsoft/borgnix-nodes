@@ -36,7 +36,8 @@
 </script>
 
 <script type="text/x-red" data-help-name="http in">
-    <p>HTTP输入节点。Provides an input node for http requests, allowing the creation of simple web services.</p>
+    <h2>HTTP输入节点。</h2>
+    <p>Provides an input node for http requests, allowing the creation of simple web services.</p>
     <p>节点输出的Message有以下属性:
         <ul>
             <li>msg.req : <a href="http://expressjs.com/api.html#req">http request</a></li>
@@ -153,8 +154,8 @@
         <a href="http://mustache.github.io/mustache.5.html" target="_new">
         mustache</a>风格的标签。这些标签可以通过输入msg的属性来设置URL。 
         </br>
-        if the url is set to
-        <code>example.com/{{{topic}}}</code>, it will have the value of 
+        如果将URL设定为<code>example.com/{{{topic}}}</code>, 
+        it will have the value of 
         <code>msg.topic</code> automatically inserted.
         Using {{{...}}} prevents mustache from escaping characters like / & etc.
     </p>

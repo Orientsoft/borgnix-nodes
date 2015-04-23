@@ -1,0 +1,1 @@
+Tip: Only Digital Input is supported - input must be 0 or 1.

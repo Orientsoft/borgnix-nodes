@@ -1,0 +1,1 @@
+Monitors an RSS/atom feed for new entries.

@@ -1,0 +1,1 @@
+**Note:** You cannot use the same pin for both output and input.

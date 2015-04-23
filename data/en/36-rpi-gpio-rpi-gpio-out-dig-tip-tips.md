@@ -1,0 +1,1 @@
+**Tip**: For digital output - input must be 0 or 1.

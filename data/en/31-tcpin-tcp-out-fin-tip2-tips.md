@@ -1,0 +1,1 @@
+**Note:** Closing the connection after each message is generally not a good thing - but is useful to indicate an end-of-file for example. The receiving client will need to reconnect.

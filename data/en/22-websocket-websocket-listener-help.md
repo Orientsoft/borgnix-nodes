@@ -1,0 +1,1 @@
+This configuration node creates a WebSocket Server using the specified path

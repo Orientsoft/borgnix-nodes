@@ -1,0 +1,1 @@
+Tip: **ONLY** retrieves the single most recent email.

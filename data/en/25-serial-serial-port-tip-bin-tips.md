@@ -1,0 +1,1 @@
+Tip: In timeout mode timeout starts from arrival of first character.

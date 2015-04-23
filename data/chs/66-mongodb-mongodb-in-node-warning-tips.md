@@ -1,0 +1,1 @@
+** Tip:**如果没有设置任何的collection,请确保**msg.collection**中能够包含collection的名字

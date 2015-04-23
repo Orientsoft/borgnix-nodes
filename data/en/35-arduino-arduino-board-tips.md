@@ -1,0 +1,1 @@
+**Tip:** Use search to try to auto-detect serial port.

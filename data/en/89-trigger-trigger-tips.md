@@ -1,0 +1,1 @@
+Setting the timeout to 0 sets an infinite timeout = single shot.

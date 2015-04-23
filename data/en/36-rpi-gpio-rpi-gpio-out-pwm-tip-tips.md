@@ -1,0 +1,1 @@
+**Tip**: For PWM output - input must be between 0 to 1023.

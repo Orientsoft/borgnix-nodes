@@ -1,0 +1,1 @@
+Tip: **Select**的值是一个[_<u>CSS Selector</u>_](https://github.com/fb55/CSSselect#user-content-supported-selectors), 类似于jQuery selector.

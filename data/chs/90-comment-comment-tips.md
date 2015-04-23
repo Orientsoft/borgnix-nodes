@@ -1,0 +1,1 @@
+Tip: 文本可以是_[Github flavoured Markdown](https://help.github.com/articles/markdown-basics/)_风格

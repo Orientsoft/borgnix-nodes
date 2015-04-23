@@ -1,0 +1,1 @@
+Tip: The **Select** value is a [_<u>CSS Selector</u>_](https://github.com/fb55/CSSselect#user-content-supported-selectors), similar to a jQuery selector.

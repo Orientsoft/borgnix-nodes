@@ -1,0 +1,1 @@
+Tip: If the JSON parse fails the fetched string is returned as-is.

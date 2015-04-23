@@ -1,0 +1,1 @@
+Tip: This node ONLY works with numbers.

@@ -1,0 +1,1 @@
+Tip: The text here can be styled as _[Github flavoured Markdown](https://help.github.com/articles/markdown-basics/)_

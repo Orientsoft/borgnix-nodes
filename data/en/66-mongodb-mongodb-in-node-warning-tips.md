@@ -1,0 +1,1 @@
+**Tip:** If no collection is set, ensure **msg.collection** will contain the collection name

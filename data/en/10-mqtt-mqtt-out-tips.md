@@ -1,0 +1,1 @@
+Tip: Leave topic, qos or retain blank if you want to set them via msg properties.

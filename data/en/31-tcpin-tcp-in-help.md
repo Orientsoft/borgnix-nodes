@@ -1,0 +1,1 @@
+Provides a choice of tcp inputs. Can either connect to a remote tcp port, or accept incoming connections.

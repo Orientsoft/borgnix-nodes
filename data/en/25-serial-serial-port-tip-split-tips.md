@@ -1,0 +1,1 @@
+Tip: the "Split on" character is used to split the input into separate messages. It can also be added to every message sent out to the serial port.

@@ -1,0 +1,1 @@
+This configuration node connects a WebSocket client to the specified URL.
