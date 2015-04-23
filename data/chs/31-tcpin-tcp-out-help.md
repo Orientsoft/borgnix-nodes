@@ -4,7 +4,7 @@ TCP输出节点
 
 只发送**msg.payload**的内容。
 
-如果**msg.payload**是一个Base64编码的字符串， Base64 decoding选项会将字符串转换成二进制后再发送。 
+如果**msg.payload**是一个Base64编码的字符串， Base64 decoding选项会将字符串转换成二进制后再发送。
 
 参数
 
