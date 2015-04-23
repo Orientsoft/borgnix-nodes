@@ -176,7 +176,8 @@ function update (language, dir) {
       finalHtml = $('head').html()
       finalHtml = finalHtml.replace( /<script type="text\/replace">/
                                    , '<script>')
-      console.log(finalHtml)
+
+      fs.writeFileSync(root+'\\'+fileStats.name, finalHtml)
     }
     next()
   })
